@@ -4,7 +4,7 @@ import React from 'react';
 const BoxStory: any = ({
   bg = 'red500',
   w = '100',
-  h = '99',
+  h = '90',
   ...props
 }: any) => {
   return (
