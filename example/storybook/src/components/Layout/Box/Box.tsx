@@ -4,7 +4,7 @@ import React from 'react';
 const BoxStory: any = ({
   bg = 'red500',
   w = '100',
-  h = '100',
+  h = '80',
   ...props
 }: any) => {
   return (
@@ -13,6 +13,8 @@ const BoxStory: any = ({
       bg={`$${bg}`}
       h={h}
       w={w}
+      borderRadius="$full"
+      borderColor="$amber500"
       justifyContent="center"
       alignItems="center"
     >
