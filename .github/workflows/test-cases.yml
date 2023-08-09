@@ -17,7 +17,7 @@ jobs:
           yarn
           yarn build
           cd example/storybook
-          yarn storybook
+          yarn storybook &
 
       - name: Wait for server to start
         run: sleep 100
