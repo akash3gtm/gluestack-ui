@@ -1,6 +1,10 @@
 name: 'Integration test'
 run-name: 'Integration Test'
-on: [pull_request, push]
+on:
+  push:
+    branches: ['patch']
+  pull_request:
+    branches: ['patch']
 jobs:
   test:
     runs-on: ubuntu-latest
