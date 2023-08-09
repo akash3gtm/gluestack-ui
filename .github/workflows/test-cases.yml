@@ -1,6 +1,6 @@
 name: 'Integration test'
 run-name: 'Integration Test'
-on: [pull_request]
+on: [pull_request, push]
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -12,18 +12,26 @@ jobs:
         with:
           node-version: 18.x
 
-      - name: Run Storybook
+      - name: install deps
         run: |
           yarn
           yarn build
+
+      - name: run storybook
+        run: |
           cd example/storybook
-          yarn storybook
+          yarn storybook &
+          echo $! > background_pid.txt
 
       - name: Wait for server to start
-        run: sleep 100
+        run: sleep 120
 
       - name: Run tests
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         run: |
+          cd example/storybook
           yarn test
+          background_pid=$(cat background_pid.txt)
+          # Kill the background process using its PID
+          kill $background_pid

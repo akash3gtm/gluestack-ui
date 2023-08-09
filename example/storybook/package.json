@@ -18,9 +18,8 @@
     "build-storybook": "build-storybook",
     "build": "bob build",
     "release": "release-it",
-    "test": "jest",
     "update-snapshot": "jest -u",
-    "percy": "percy storybook http://localhost:6007/?path=/story/stories-layout-box--box -i LAYOUT"
+    "test": "percy storybook http://localhost:6007 -i LAYOUT"
   },
   "dependencies": {
     "@expo/html-elements": "^0.4.2",
