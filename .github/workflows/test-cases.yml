@@ -1,6 +1,6 @@
 name: 'Integration test'
 run-name: 'Integration Test'
-on: [pull_request]
+on: [pull_request, push]
 jobs:
   test:
     runs-on: ubuntu-latest
