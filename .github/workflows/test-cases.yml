@@ -27,6 +27,7 @@ jobs:
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         run: |
+          cd example/storybook
           yarn test
           background_pid=$(cat background_pid.txt)
           # Kill the background process using its PID
