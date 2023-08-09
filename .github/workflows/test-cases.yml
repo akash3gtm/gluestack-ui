@@ -12,16 +12,19 @@ jobs:
         with:
           node-version: 18.x
 
-      - name: Run Storybook
+      - name: install deps
         run: |
           yarn
           yarn build
+
+      - name: run storybook
+        run: |
           cd example/storybook
           yarn storybook &
           echo $! > background_pid.txt
 
       - name: Wait for server to start
-        run: sleep 100
+        run: sleep 120
 
       - name: Run tests
         env:
