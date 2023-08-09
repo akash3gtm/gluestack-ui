@@ -10,11 +10,20 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.x
 
-      - name: Run Tests
+      - name: Run Storybook
         run: |
           yarn
           yarn build
           cd example/storybook
+          yarn storybook
+
+      - name: Wait for server to start
+        run: sleep 100
+
+      - name: Run tests
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+        run: |
           yarn test
