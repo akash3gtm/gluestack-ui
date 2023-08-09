@@ -18,6 +18,7 @@ jobs:
           yarn build
           cd example/storybook
           yarn storybook &
+          echo $! > background_pid.txt
 
       - name: Wait for server to start
         run: sleep 100
@@ -27,3 +28,6 @@ jobs:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         run: |
           yarn test
+          background_pid=$(cat background_pid.txt)
+          # Kill the background process using its PID
+          kill $background_pid
